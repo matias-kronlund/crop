@@ -19,9 +19,15 @@ if __name__ == '__main__':
     width = img.shape[1]
     wsize = height/4
     wsize = wsize*3
-    middle = wsize/2
-    widthpoints = [int(width/2+middle),int(width/2-middle)];
-    end = [int(width/2+200),int(height/2+150)];
-    print(height, width, wsize)
-    image = 'resized_imagea.jpg'
-    crop(image, (widthpoints[1], 0, widthpoints[0], height), 'resized_image.jpg')
+    if width < wsize:
+        hsize = width/3
+        hsize = hsize*4
+        middle = hsize/2
+        heightpoints = [int(height/2+middle),int(height/2-middle)]
+        image = 'image.jpg'
+        crop(image, (0, heightpoints[1], width, heightpoints[0]), 'resized_image.jpg')
+    else:
+        middle = wsize/2
+        widthpoints = [int(width/2+middle),int(width/2-middle)]
+        image = 'image.jpg'
+        crop(image, (widthpoints[1], 0, widthpoints[0], height), 'resized_image.jpg')
